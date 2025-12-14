@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux Commands Reference - Complete Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .print-btn {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .print-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .tp-section {
+            margin-bottom: 50px;
+            border-left: 4px solid #667eea;
+            padding-left: 30px;
+        }
+
+        .tp-section h2 {
+            color: #667eea;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .tp-section h3 {
+            color: #764ba2;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .tp-section h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: #e83e8c;
+            font-size: 0.95em;
+        }
+
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        pre code {
+            background: none;
+            color: #f8f8f2;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .note strong {
+            color: #856404;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        strong {
+            color: #667eea;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            header {
+                background: #667eea;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .print-btn {
+                display: none;
+            }
+
+            .tp-section {
+                page-break-inside: avoid;
+            }
+
+            h2 {
+                page-break-after: avoid;
+            }
+        }
+
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            transition: all 0.3s;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐧 Linux Commands Reference</h1>
+            <p>Complete Guide for TPs 1-7</p>
+            <button class="print-btn" onclick="window.print()">🖨️ Print as PDF</button>
+        </header>
+
+        <div class="content">
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#tp1">TP1 - Basic Commands</a></li>
+                    <li><a href="#tp2">TP2 - Archives, Compression, Links</a></li>
+                    <li><a href="#tp3">TP3 - Redirection and Piping</a></li>
+                    <li><a href="#tp4">TP4 - Ownership and Permissions</a></li>
+                    <li><a href="#tp5">TP5 - FIND and GREP Commands</a></li>
+                    <li><a href="#tp6">TP6 - Linux Filters</a></li>
+                    <li><a href="#tp7">TP7 - Process Management and User Administration</a></li>
+                </ul>
+            </div>
+
+            <!-- TP1 -->
+            <div class="tp-section" id="tp1">
+                <h2>TP1 - Basic Commands</h2>
+
+                <h3>Session Management</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>script Lab1</code></td><td>Save terminal session to file</td></tr>
+                    <tr><td><code>script -a Lab1</code></td><td>Append to existing script file</td></tr>
+                    <tr><td><code>exit</code></td><td>Exit script session</td></tr>
+                </table>
+
+                <h3>System Information</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>who</code></td><td>Show logged in users and terminal ID</td></tr>
+                    <tr><td><code>whoami</code></td><td>Show current username only</td></tr>
+                    <tr><td><code>cal -3</code></td><td>Display 3 months (previous, current, next)</td></tr>
+                    <tr><td><code>date</code></td><td>Show current date and time</td></tr>
+                </table>
+
+                <h3>Calculator</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>bc</code></td><td>Start calculator</td></tr>
+                    <tr><td><code>scale=2</code></td><td>Set decimal places</td></tr>
+                    <tr><td><code>quit</code></td><td>Exit calculator</td></tr>
+                </table>
+
+                <h3>Navigation</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>pwd</code></td><td>Show current directory</td></tr>
+                    <tr><td><code>cd /absolute/path</code></td><td>Change directory using absolute path</td></tr>
+                    <tr><td><code>cd ../relative/path</code></td><td>Change directory using relative path</td></tr>
+                    <tr><td><code>cd ~</code></td><td>Go to home directory</td></tr>
+                    <tr><td><code>cd ..</code></td><td>Go to parent directory</td></tr>
+                    <tr><td><code>cd /</code></td><td>Go to root directory</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>Note:</strong> 
+                    <ul>
+                        <li><strong>Absolute path:</strong> Begins with root <code>/</code> and gives all parent directories</li>
+                        <li><strong>Relative path:</strong> <code>../file.txt</code> (depends on current location)</li>
+                    </ul>
+                </div>
+
+                <h3>Directory Management</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>mkdir dirname</code></td><td>Create directory</td></tr>
+                    <tr><td><code>mkdir dir1 dir2</code></td><td>Create multiple directories</td></tr>
+                    <tr><td><code>rmdir dirname</code></td><td>Delete empty directory</td></tr>
+                    <tr><td><code>rm -r dirname</code></td><td>Delete non-empty directory</td></tr>
+                </table>
+
+                <h3>File Operations</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>touch file.txt</code></td><td>Create empty file</td></tr>
+                    <tr><td><code>touch .hidden</code></td><td>Create hidden file</td></tr>
+                    <tr><td><code>cat > file.txt</code></td><td>Write to file (overwrites), Ctrl-C to save</td></tr>
+                    <tr><td><code>cat >> file.txt</code></td><td>Append to file, Ctrl-C to save</td></tr>
+                    <tr><td><code>cat file.txt</code></td><td>Display file content</td></tr>
+                </table>
+
+                <h3>Listing Files</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>ls</code></td><td>Basic listing</td></tr>
+                    <tr><td><code>ls -l</code></td><td>Long format (permissions, owner, size, date)</td></tr>
+                    <tr><td><code>ls -i</code></td><td>Show inode numbers</td></tr>
+                    <tr><td><code>ls -a</code></td><td>Show all files (including hidden)</td></tr>
+                    <tr><td><code>ls -F /</code></td><td>Show file types (/ for dirs, * for executables)</td></tr>
+                    <tr><td><code>ls -lh</code></td><td>Human-readable file sizes</td></tr>
+                    <tr><td><code>ls -al</code></td><td>All files + long format</td></tr>
+                </table>
+
+                <h3>Copy, Move, Delete</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>cp source dest</code></td><td>Copy file</td></tr>
+                    <tr><td><code>cp ../file .</code></td><td>Copy from parent to current directory</td></tr>
+                    <tr><td><code>mv old new</code></td><td>Rename file</td></tr>
+                    <tr><td><code>mv file dir/</code></td><td>Move file to directory</td></tr>
+                    <tr><td><code>rm file</code></td><td>Delete file</td></tr>
+                </table>
+            </div>
+
+            <!-- TP2 -->
+            <div class="tp-section" id="tp2">
+                <h2>TP2 - Archives, Compression, Links</h2>
+
+                <h3>TAR Archives</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>tar -cvf backup.tar /path</code></td><td>Create archive (c=create, v=verbose, f=file)</td></tr>
+                    <tr><td><code>tar -tvf backup.tar</code></td><td>List archive contents (t=list)</td></tr>
+                    <tr><td><code>tar -xvf backup.tar</code></td><td>Extract archive (x=extract)</td></tr>
+                    <tr><td><code>tar -zcvf backup.tar.gz /path</code></td><td>Create compressed archive (z=gzip)</td></tr>
+                </table>
+
+                <h3>Compression</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>gzip file</code></td><td>Compress file (creates file.gz)</td></tr>
+                    <tr><td><code>gunzip file.gz</code></td><td>Uncompress file</td></tr>
+                </table>
+
+                <h3>Links</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>ln source hardlink</code></td><td>Create hard link</td></tr>
+                    <tr><td><code>ln -s target symlink</code></td><td>Create symbolic (soft) link</td></tr>
+                    <tr><td><code>ln -s ~ dirname</code></td><td>Create symbolic link to directory</td></tr>
+                    <tr><td><code>ls -li file</code></td><td>Show inode and link count</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>Links:</strong>
+                    <ul>
+                        <li><strong>Hard link:</strong> Multiple names for same file (same inode)</li>
+                        <li><strong>Soft link:</strong> Shortcut to file/directory (different inode)</li>
+                    </ul>
+                </div>
+
+                <h3>Wildcards</h3>
+                <table>
+                    <tr><th>Pattern</th><th>Matches</th></tr>
+                    <tr><td><code>*</code></td><td>Any characters</td></tr>
+                    <tr><td><code>?</code></td><td>Single character</td></tr>
+                    <tr><td><code>[13]</code></td><td>Characters 1 or 3</td></tr>
+                    <tr><td><code>[0-9]</code></td><td>Any digit</td></tr>
+                    <tr><td><code>*s*</code></td><td>Files containing letter s</td></tr>
+                    <tr><td><code>??s*</code></td><td>Files with s as 3rd character</td></tr>
+                </table>
+            </div>
+
+            <!-- TP3 -->
+            <div class="tp-section" id="tp3">
+                <h2>TP3 - Redirection and Piping</h2>
+
+                <h3>Output Redirection</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>command > file</code></td><td>Redirect stdout to file (overwrite)</td></tr>
+                    <tr><td><code>command >> file</code></td><td>Redirect stdout to file (append)</td></tr>
+                    <tr><td><code>ls ~ > files.txt</code></td><td>Save directory listing to file</td></tr>
+                </table>
+
+                <h3>Error Redirection</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>command 2> file</code></td><td>Redirect stderr to file</td></tr>
+                    <tr><td><code>command 2> /dev/null</code></td><td>Discard error messages</td></tr>
+                    <tr><td><code>command > out.txt 2>&1</code></td><td>Redirect both stdout and stderr</td></tr>
+                </table>
+
+                <h3>Input Redirection</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>command < file</code></td><td>Redirect stdin from file</td></tr>
+                    <tr><td><code>sort < input.txt</code></td><td>Sort contents from file</td></tr>
+                </table>
+
+                <h3>Piping</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>command1 | command2</code></td><td>Send output of command1 to command2</td></tr>
+                    <tr><td><code>ls -l ~ | sort</code></td><td>List and sort</td></tr>
+                    <tr><td><code>command | tee file</code></td><td>Display output and save to file</td></tr>
+                    <tr><td><code>command | tee -a file</code></td><td>Display and append to file</td></tr>
+                </table>
+
+                <h3>Utility Commands</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>head -5 file</code></td><td>Show first 5 lines</td></tr>
+                    <tr><td><code>tail -5 file</code></td><td>Show last 5 lines</td></tr>
+                    <tr><td><code>sort file</code></td><td>Sort lines alphabetically/numerically</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>Remember:</strong>
+                    <ul>
+                        <li><code>></code> overwrites file</li>
+                        <li><code>>></code> appends to file</li>
+                        <li><code>2></code> redirects errors only</li>
+                        <li><code>|</code> connects commands</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TP4 -->
+            <div class="tp-section" id="tp4">
+                <h2>TP4 - Ownership and Permissions</h2>
+
+                <h3>View Permissions</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>ls -l file</code></td><td>Show file permissions</td></tr>
+                    <tr><td><code>ls -ld dir</code></td><td>Show directory permissions</td></tr>
+                    <tr><td><code>id</code></td><td>Show user ID and groups</td></tr>
+                </table>
+
+                <h3>Permission Structure</h3>
+                <pre><code>-rwxrwxrwx
+│└─┬─┘└─┬─┘└─┬─┘
+│  │    │    └── Others
+│  │    └─────── Group
+│  └──────────── User (Owner)
+└─────────────── Type (- = file, d = directory)
+
+r = read (4)
+w = write (2)
+x = execute (1)</code></pre>
+
+                <h3>Change Permissions (chmod)</h3>
+                
+                <h4>Symbolic Mode:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>chmod +r file</code></td><td>Add read permission</td></tr>
+                    <tr><td><code>chmod -w file</code></td><td>Remove write permission</td></tr>
+                    <tr><td><code>chmod +x file</code></td><td>Add execute permission</td></tr>
+                    <tr><td><code>chmod u+x file</code></td><td>Add execute for user only</td></tr>
+                    <tr><td><code>chmod g-w file</code></td><td>Remove write from group</td></tr>
+                </table>
+
+                <h4>Numeric Mode:</h4>
+                <table>
+                    <tr><th>Command</th><th>Result</th></tr>
+                    <tr><td><code>chmod 755 file</code></td><td>rwxr-xr-x</td></tr>
+                    <tr><td><code>chmod 644 file</code></td><td>rw-r--r--</td></tr>
+                    <tr><td><code>chmod 777 file</code></td><td>rwxrwxrwx</td></tr>
+                </table>
+
+                <h3>Change Ownership</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>chown user file</code></td><td>Change file owner</td></tr>
+                    <tr><td><code>chgrp group file</code></td><td>Change file group</td></tr>
+                    <tr><td><code>chown user:group file</code></td><td>Change both owner and group</td></tr>
+                </table>
+
+                <h3>Umask</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>umask</code></td><td>Show current umask value</td></tr>
+                    <tr><td><code>umask 022</code></td><td>Set new umask value</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>Default Permissions:</strong>
+                    <ul>
+                        <li>Directories: 777 - umask</li>
+                        <li>Files: 666 - umask</li>
+                        <li>umask 022 → dirs: 755, files: 644</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TP5 -->
+            <div class="tp-section" id="tp5">
+                <h2>TP5 - FIND and GREP Commands</h2>
+
+                <h3>FIND Command</h3>
+                
+                <h4>Search by Name:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>find -name filename</code></td><td>Search in current directory</td></tr>
+                    <tr><td><code>find / -name filename</code></td><td>Search in all directories</td></tr>
+                    <tr><td><code>find -name '*.sh'</code></td><td>Find all shell scripts</td></tr>
+                </table>
+
+                <h4>Search by Type:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>find . -type f</code></td><td>Find only files</td></tr>
+                    <tr><td><code>find . -type d</code></td><td>Find only directories</td></tr>
+                    <tr><td><code>find . -type l</code></td><td>Find only symbolic links</td></tr>
+                </table>
+
+                <h4>Search by Size/Time:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>find -size +1k</code></td><td>Files larger than 1KB</td></tr>
+                    <tr><td><code>find -size -4k</code></td><td>Files smaller than 4KB</td></tr>
+                    <tr><td><code>find -mtime +2</code></td><td>Modified more than 2 days ago</td></tr>
+                </table>
+
+                <h4>Execute Commands:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>find -name '*.c' -exec ls -l {} \;</code></td><td>Run ls on all .c files</td></tr>
+                    <tr><td><code>find . -type f -exec chmod 664 {} \;</code></td><td>Change permissions</td></tr>
+                </table>
+
+                <h3>GREP Command</h3>
+                
+                <h4>Basic Search:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>grep pattern file</code></td><td>Search for pattern in file</td></tr>
+                    <tr><td><code>grep -r pattern ~</code></td><td>Search recursively</td></tr>
+                    <tr><td><code>grep -n pattern file</code></td><td>Show line numbers</td></tr>
+                    <tr><td><code>grep -i pattern file</code></td><td>Case insensitive</td></tr>
+                </table>
+
+                <h4>Pattern Matching:</h4>
+                <table>
+                    <tr><th>Pattern</th><th>Meaning</th></tr>
+                    <tr><td><code>^</code></td><td>Beginning of line</td></tr>
+                    <tr><td><code>$</code></td><td>End of line</td></tr>
+                    <tr><td><code>.</code></td><td>Any single character</td></tr>
+                    <tr><td><code>|</code></td><td>OR (with -E)</td></tr>
+                    <tr><td><code>[]</code></td><td>Character set</td></tr>
+                </table>
+            </div>
+
+            <!-- TP6 -->
+            <div class="tp-section" id="tp6">
+                <h2>TP6 - Linux Filters</h2>
+
+                <h3>SORT Command</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>sort file</code></td><td>Sort alphabetically</td></tr>
+                    <tr><td><code>sort -r file</code></td><td>Reverse order</td></tr>
+                    <tr><td><code>sort -n file</code></td><td>Numeric sort</td></tr>
+                    <tr><td><code>sort -u file</code></td><td>Remove duplicates</td></tr>
+                    <tr><td><code>sort -t: -k2 file</code></td><td>Sort by column 2, delimiter :</td></tr>
+                </table>
+
+                <h3>TR Command</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>tr 'a' 'z' < file</code></td><td>Replace a with z</td></tr>
+                    <tr><td><code>tr -d "'" < file</code></td><td>Delete apostrophes</td></tr>
+                    <tr><td><code>tr '[:upper:]' '[:lower:]'</code></td><td>Convert to lowercase</td></tr>
+                    <tr><td><code>tr -s ' ' < file</code></td><td>Squeeze spaces</td></tr>
+                </table>
+
+                <h3>CUT Command</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>cut -f1 -d: file</code></td><td>Extract field 1, delimiter :</td></tr>
+                    <tr><td><code>cut -f1,3 -d: file</code></td><td>Extract fields 1 and 3</td></tr>
+                    <tr><td><code>cut -c2-10 file</code></td><td>Extract characters 2-10</td></tr>
+                </table>
+
+                <h3>PASTE Command</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>paste file1 file2</code></td><td>Merge files side by side</td></tr>
+                    <tr><td><code>paste -d: file1 file2</code></td><td>Merge with : delimiter</td></tr>
+                </table>
+
+                <h3>Other Filters</h3>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>split -b 100 file</code></td><td>Split into 100-byte chunks</td></tr>
+                    <tr><td><code>split -l 3 file</code></td><td>Split into 3-line chunks</td></tr>
+                    <tr><td><code>wc file</code></td><td>Count lines, words, bytes</td></tr>
+                    <tr><td><code>wc -l file</code></td><td>Count lines only</td></tr>
+                    <tr><td><code>comm file1 file2</code></td><td>Compare sorted files (3 columns)</td></tr>
+                    <tr><td><code>diff file1 file2</code></td><td>Show differences between files</td></tr>
+                    <tr><td><code>cmp file1 file2</code></td><td>Compare byte by byte</td></tr>
+                </table>
+            </div>
+
+            <!-- TP7 -->
+            <div class="tp-section" id="tp7">
+                <h2>TP7 - Process Management and User Administration</h2>
+
+                <h3>Process Management</h3>
+                
+                <h4>PS Command (Process Status):</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>ps</code></td><td>Show current user processes</td></tr>
+                    <tr><td><code>ps -u</code></td><td>Show processes with details</td></tr>
+                    <tr><td><code>ps -f</code></td><td>Full format listing</td></tr>
+                    <tr><td><code>ps -l</code></td><td>Long format</td></tr>
+                    <tr><td><code>ps -e</code></td><td>Show all processes</td></tr>
+                    <tr><td><code>ps aux</code></td><td>All processes with detailed info</td></tr>
+                </table>
+
+                <h4>Background and Foreground:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>command &</code></td><td>Run command in background</td></tr>
+                    <tr><td><code>fg</code></td><td>Bring background process to foreground</td></tr>
+                    <tr><td><code>bg</code></td><td>Resume suspended process in background</td></tr>
+                    <tr><td><code>Ctrl+Z</code></td><td>Suspend current foreground process</td></tr>
+                    <tr><td><code>jobs</code></td><td>List background jobs</td></tr>
+                </table>
+
+                <h4>Kill Processes:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>kill PID</code></td><td>Terminate process by PID</td></tr>
+                    <tr><td><code>kill -9 PID</code></td><td>Force kill process (SIGKILL)</td></tr>
+                    <tr><td><code>kill -15 PID</code></td><td>Gracefully terminate (SIGTERM)</td></tr>
+                    <tr><td><code>killall process_name</code></td><td>Kill all processes by name</td></tr>
+                    <tr><td><code>killall -9 cat</code></td><td>Force kill all cat processes</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>Common Signals:</strong>
+                    <ul>
+                        <li><strong>-9 (SIGKILL):</strong> Force terminate (cannot be ignored)</li>
+                        <li><strong>-15 (SIGTERM):</strong> Graceful terminate (default)</li>
+                        <li><strong>-STOP:</strong> Suspend process</li>
+                        <li><strong>-CONT:</strong> Resume process</li>
+                    </ul>
+                </div>
+
+                <h4>Process Monitoring:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>top</code></td><td>Real-time process monitor (press q to quit)</td></tr>
+                    <tr><td><code>nohup command &</code></td><td>Run process that continues after logout</td></tr>
+                </table>
+
+                <h3>User Administration</h3>
+                
+                <h4>User Management:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>sudo adduser username</code></td><td>Create new user (interactive)</td></tr>
+                    <tr><td><code>sudo passwd username</code></td><td>Set/change user password</td></tr>
+                    <tr><td><code>sudo userdel username</code></td><td>Delete user</td></tr>
+                    <tr><td><code>sudo userdel -r username</code></td><td>Delete user and home directory</td></tr>
+                </table>
+
+                <h4>User Modification (usermod):</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>sudo usermod -c "comment" user</code></td><td>Add user description</td></tr>
+                    <tr><td><code>sudo usermod -d /new/home user</code></td><td>Change home directory</td></tr>
+                    <tr><td><code>sudo usermod -e 2024-12-31 user</code></td><td>Set account expiry date</td></tr>
+                    <tr><td><code>sudo usermod -g groupname user</code></td><td>Change primary group</td></tr>
+                    <tr><td><code>sudo usermod -l newname oldname</code></td><td>Change username/login</td></tr>
+                    <tr><td><code>sudo usermod -L username</code></td><td>Lock user account</td></tr>
+                    <tr><td><code>sudo usermod -U username</code></td><td>Unlock user account</td></tr>
+                </table>
+
+                <h4>Group Management:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>sudo groupadd groupname</code></td><td>Create new group</td></tr>
+                    <tr><td><code>sudo groupdel groupname</code></td><td>Delete group</td></tr>
+                    <tr><td><code>sudo adduser user groupname</code></td><td>Add user to group</td></tr>
+                    <tr><td><code>groups username</code></td><td>Show user's groups</td></tr>
+                    <tr><td><code>id username</code></td><td>Show user ID and group IDs</td></tr>
+                </table>
+
+                <h4>System Control:</h4>
+                <table>
+                    <tr><th>Command</th><th>Description</th></tr>
+                    <tr><td><code>sudo shutdown -P now</code></td><td>Power off immediately</td></tr>
+                    <tr><td><code>sudo shutdown -r now</code></td><td>Reboot immediately</td></tr>
+                    <tr><td><code>sudo shutdown -h +10</code></td><td>Shutdown in 10 minutes</td></tr>
+                    <tr><td><code>sudo shutdown -c</code></td><td>Cancel scheduled shutdown</td></tr>
+                    <tr><td><code>sudo reboot</code></td><td>Reboot system</td></tr>
+                </table>
+
+                <div class="note">
+                    <strong>User Information Files:</strong>
+                    <ul>
+                        <li><strong>/etc/passwd:</strong> User account info</li>
+                        <li><strong>/etc/shadow:</strong> Encrypted passwords</li>
+                        <li><strong>/etc/group:</strong> Group information</li>
+                    </ul>
+                </div>
+            </div>
+
+            <footer style="text-align: center; padding: 40px; color: #666; border-top: 2px solid #eee; margin-top: 50px;">
+                <p><strong>Linux Commands Reference Guide</strong></p>
+                <p>TPs 1-7 Complete | ESI-SBA</p>
+                <p style="margin-top: 10px;">📚 Study well and good luck! 🚀</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
