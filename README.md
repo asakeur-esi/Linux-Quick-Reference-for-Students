@@ -14,7 +14,7 @@ Complete reference guide for Linux commands covering all lab assignments (TPs 1-
 
 ## 🌐 Live Demo
 
-Visit the live website: [Linux Commands Reference](https://asakeur-esi.github.io/Linux-Commands-Reference/)
+Visit the live website: [Linux Commands Reference]([https://asakeur-esi.github.io/Linux-Commands-Reference/](https://asakeur-esi.github.io/Linux-Quick-Reference-for-Students/))
 
 *(Replace `asakeur-esi` with your actual GitHub username)*
 
